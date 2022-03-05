@@ -10,9 +10,11 @@ public class Post {
     private Long id;
     private String title;
     private String author;
+
     @ManyToOne
     private Topic topic;
-    @ManyToMany (mappedBy = "posts")
+
+    @ManyToMany(mappedBy = "posts")
     Collection <Hashtag> hashtags;
     @Lob
     private String content;
@@ -20,10 +22,12 @@ public class Post {
     protected Post() {
     }
 
-    public Post(String author,String title, Topic topic, String content) {
-        this.author = author;
+    public Post(String author, String title, Topic topic, String content) {
+        this.id = id;
         this.title = title;
+        this.author = author;
         this.topic = topic;
+        this.hashtags = hashtags;
         this.content = content;
     }
 
@@ -47,6 +51,12 @@ public class Post {
     public String getContent() {
         return content;
     }
+
+
+
+
+
+
 
     @Override
     public String toString() {
