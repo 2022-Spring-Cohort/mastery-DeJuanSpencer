@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${post.title}">Document</title>
+    <title th:text="${post.title}">Current Post</title>
     <link rel="icon" href="/assets/icon.png">
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/layout.css" />
@@ -23,11 +23,31 @@
             <section class="main-content__post post">
                 <h3 class="post__topic-title main-content__topic-title"><a th:text="${post.topic.name}" th:href="'/topics/'+${post.topic.id}" class="main-content__topic-link post__topic-link">Topic</a>
                     </h3>
+                <h2 th:text="${post.author}" class="post__author main-content__topic-author">Post Title</h2>
                 <h2 th:text="${post.title}" class="post__title main-content__topic-title">Post Title</h2>
                 <p th:text="${post.content}" class="post__content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque blanditiis, aut quae fuga id quis ut. 
                     Eligendi necessitatibus blanditiis officia, odio deleniti natus molestiae fugiat ex quod vel aliquam illum.
                 </p>
             </section>
+
+
+
+
+
+            <form th:action="'/posts/'+${post.id}" method="POST">
+                <label for="hashtag">Hashtag:</label><br>
+                <textarea id="hashtag" name="hashtag" rows="1" cols="60"></textarea><br>
+               <input type = "submit" value = "Submit">
+            </form>
+
+       <!--     <ul>
+                <li th:each="hashtag:${post.hashtags}">
+
+                    <a th:href="'/hashtags/'+${hashtag.id}" th:text="${hashtag.name}"></a>
+
+
+                </li>
+            </ul>-->
         </main>
     </div>
 

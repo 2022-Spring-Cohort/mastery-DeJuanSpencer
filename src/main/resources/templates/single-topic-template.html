@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title th:text="${topic.name}">Document</title>
+    <title th:text="${topic.name}">Current Topic</title>
 
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="stylesheet" href="/css/layout.css"/>
@@ -31,6 +32,20 @@
                 </div>
             </nav>
         </section>
+        <form th:action="'/topics/'+${topic.id}" method="POST">
+
+            <label for="author">Author:</label><br>
+            <input type="text" id="author" name="author"><br>
+
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title"><br>
+
+            <label for="content">Content:</label><br>
+            <input type="text" id="content" name="content"><br>
+
+            <input type = "submit" value = "Submit">
+        </form>
+
     </main>
 </div>
 </body>

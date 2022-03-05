@@ -1,6 +1,7 @@
 package com.survivingcodingbootcamp.blog.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Post {
@@ -8,22 +9,35 @@ public class Post {
     @GeneratedValue
     private Long id;
     private String title;
+    private String author;
+
     @ManyToOne
     private Topic topic;
+
+    @ManyToMany(mappedBy = "posts")
+    Collection <Hashtag> hashtags;
     @Lob
     private String content;
 
     protected Post() {
     }
 
-    public Post(String title, Topic topic, String content) {
+    public Post(String author, String title, Topic topic, String content) {
+        this.id = id;
         this.title = title;
+        this.author = author;
         this.topic = topic;
+        this.hashtags = hashtags;
         this.content = content;
     }
 
     public Long getId() {
         return id;
+    }
+
+
+    public String getAuthor() {
+        return author;
     }
 
     public String getTitle() {
@@ -38,6 +52,12 @@ public class Post {
         return content;
     }
 
+
+
+
+
+
+
     @Override
     public String toString() {
         return "Post{" +
@@ -50,14 +70,19 @@ public class Post {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         Post post = (Post) o;
 
-        if (id != null ? !id.equals(post.id) : post.id != null) return false;
-        if (title != null ? !title.equals(post.title) : post.title != null) return false;
-        if (topic != null ? !topic.equals(post.topic) : post.topic != null) return false;
+        if (id != null ? !id.equals(post.id) : post.id != null)
+            return false;
+        if (title != null ? !title.equals(post.title) : post.title != null)
+            return false;
+        if (topic != null ? !topic.equals(post.topic) : post.topic != null)
+            return false;
         return content != null ? content.equals(post.content) : post.content == null;
     }
 
